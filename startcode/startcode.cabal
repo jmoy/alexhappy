@@ -15,7 +15,7 @@ build-type:          Simple
 -- extra-source-files:  
 cabal-version:       >=1.10
 
-executable tiger
+executable startcode
   main-is:             Main.hs
   other-modules:       Parser, Lexer, LexParseCommon
   -- other-extensions:    
