@@ -24,6 +24,7 @@ executable wordcountuni
   build-depends:       base >=4.7 && <4.8,
                        array >=0.5,
                        utf8-string >= 0.3.7,
+                       bytestring >= 0.10,
                        text >= 1.2
   build-tools:         alex
   -- hs-source-dirs:      

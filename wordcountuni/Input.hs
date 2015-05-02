@@ -2,27 +2,22 @@ module Input where
 import Codec.Binary.UTF8.String as U8
 import Data.Word
 import qualified Data.Text.Lazy as T
+import qualified Data.Text.Lazy.Encoding as TE
+import qualified Data.ByteString.Lazy as B
 
+type AlexInput = B.ByteString
 
-type AlexInput = ([Word8],   -- rest of the bytes for the current char
-                  T.Text)    -- rest of the input string
+strToInp::B.ByteString->AlexInput
+strToInp  = id
 
-strToInp::T.Text->AlexInput
-strToInp s = ([],s)
+inpToStr::AlexInput->B.ByteString
+inpToStr  = id
 
-inpToStr::AlexInput->T.Text
-inpToStr (_,s) = s
-
-makeToken::T.Text -> T.Text
-makeToken = id
+makeToken::B.ByteString -> B.ByteString
+makeToken = B.copy
 
 alexGetByte :: AlexInput -> Maybe (Word8,AlexInput)
-alexGetByte ((b:bs),s)  = Just (b, (bs, s))
-alexGetByte ([],s) =
-  case T.uncons s of
-    Nothing -> Nothing
-    Just (c,s') -> case U8.encodeChar c of
-      (b:bs) -> Just (b, (bs, s'))
+alexGetByte  = B.uncons
 
 alexInputPrevChar :: AlexInput -> Char
 alexInputPrevChar _ = undefined
