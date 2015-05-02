@@ -22,7 +22,7 @@ Endowments:               {[]}
           |string Catlist Endowments {($1,$2):$3}
 
 Catlist : cat {1}
-        | cat Catlist {$2+1}
+        | Catlist cat {$1+1}
 
 {
 parseError _ = do
